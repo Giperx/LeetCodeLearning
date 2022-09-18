@@ -4,41 +4,34 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
 using namespace std;
-//合并两个有序数组
-class Solution{
+//重塑矩阵
+class Solution {
 public:
-        //O(m + n)  双指针
-        void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-            int *tmp = new int[m + n];
-            int cnt = 0;
-            for(int i = 0, j = 0; i < m && j < n;){
-                if(!m) tmp[cnt++] = nums2[j];
-                if(!n) tmp[cnt++] = nums1[i];
-                if(nums1[i] <= nums2[j] ) tmp[cnt++] = nums1[i++];
-                else tmp[cnt++] = nums2[j++];
-
-                if(i == m) while(j != n) tmp[cnt++] = nums2[j++];
-                if(j == n) while(i != m) tmp[cnt++] = nums1[i++];
+    //
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int ro = mat.size(), col = mat[0].size(); // 行、列
+        int sz = ro * col; //mat元素总个数
+        if (sz != r * c) return mat;
+        vector<vector<int>> res(r, vector<int>(c));
+        int cnt = 0; //计数
+        for(int i = 0; i < r; i ++){
+            for(int j = 0; j < c; j ++){
+                res[i][j] = mat[cnt / col][cnt % col];
+                cnt++;
             }
-
-            for(int i = 0; i < m + n; i ++) nums1[i] = tmp[i];
-
         }
-
-        //(m + n)log(m + n) 连接再sort
-        void merge1(vector<int>& nums1, int m, vector<int>& nums2, int n){
-            for (int i = 0; i < n; ++i) {
-                nums1[m + i] = nums2[i];
-            }
-            sort(nums1.begin(), nums1.end());
-        }
+        return res;
+    }
 };
 
 int main(){
     Solution res;
     vector<int> a = {1, 2, 3, 0, 0, 0};
     vector<int> b = {2, 5, 6};
+    unordered_map<int, int>hash;
+ hash.
     res.merge(a, 3, b, 3);
     for (int i = 0; i < 6; ++i) {
         cout << a[i] << ' ';
