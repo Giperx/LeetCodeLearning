@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <stack>
 using namespace std;
 //重塑矩阵
 class Solution {
@@ -27,14 +28,10 @@ public:
 };
 
 int main(){
-    Solution res;
-    vector<int> a = {1, 2, 3, 0, 0, 0};
-    vector<int> b = {2, 5, 6};
-    unordered_map<int, int>hash;
- hash.
-    res.merge(a, 3, b, 3);
-    for (int i = 0; i < 6; ++i) {
-        cout << a[i] << ' ';
-    }
+   vector<int> tmp = {'1', '2', '3'};
+   stack<int> s1;
+   s1.push(1);
+   s1.push(2);
+   s1.top();
     return 0;
 }
