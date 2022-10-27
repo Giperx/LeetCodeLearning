@@ -33,5 +33,15 @@ int main(){
    s1.push(1);
    s1.push(2);
    s1.top();
+   int i = (1 + 3 + 1)/2;
+   cout << i << endl;
+   unordered_map<int, int> map1;
+   map1[1] = 2;
+   cout << map1[1] << endl;
+   unordered_map<int, int> map2 = map1;
+   map1[1] = 1;
+    cout << map1[1] << endl;
+   cout << map2[1] << endl;
+    int *cnt1 = new int[26]();
     return 0;
 }
