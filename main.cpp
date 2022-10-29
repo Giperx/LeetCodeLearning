@@ -43,5 +43,7 @@ int main(){
     cout << map1[1] << endl;
    cout << map2[1] << endl;
     int *cnt1 = new int[26]();
+    int tmp1 = 0x7fffffff;
+    cout << tmp1 << endl;
     return 0;
 }
