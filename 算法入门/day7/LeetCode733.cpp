@@ -8,7 +8,7 @@ class Solution {
 private:
     int xs[4] = {-1, 0, 1, 0}, ys[4] = {0, 1, 0, -1};
 public:
-    // O(m*n)   O(m*n)  dfs
+    // O(m*n)   O(m*n)  dfs 洪泛
     void dfs(vector<vector<int>>& image, int sr, int sc, int color, int src){
         if(image[sr][sc] != src) return;
 
@@ -18,13 +18,10 @@ public:
                 dfs(image, sr + xs[i], sc + ys[i], color, src);
             }
         }
-        if(sr + xs[0] >= 0){
 
-        }
     }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        int **sta = new int*[image.size()];
-        for(int i = 0; i < image.size(); i ++) sta[i] = new int[image[0].size()]();
+
         if(image[sr][sc] != color){
             dfs(image, sr, sc, color, image[sr][sc]);
         }

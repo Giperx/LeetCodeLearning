@@ -45,5 +45,9 @@ int main(){
     int *cnt1 = new int[26]();
     int tmp1 = 0x7fffffff;
     cout << tmp1 << endl;
+    string s = "";
+    cout << 'a' - 'A' << endl;
+    cout << s.size() << endl;
+    cout << s.length() << endl;
     return 0;
 }
