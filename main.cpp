@@ -7,16 +7,16 @@
 #include <unordered_map>
 #include <stack>
 using namespace std;
-//é‡å¡‘çŸ©é˜µ
+//ÖØËÜ¾ØÕó
 class Solution {
 public:
     //
     vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
-        int ro = mat.size(), col = mat[0].size(); // è¡Œã€åˆ—
-        int sz = ro * col; //matå…ƒç´ æ€»ä¸ªæ•°
+        int ro = mat.size(), col = mat[0].size(); // ĞĞ¡¢ÁĞ
+        int sz = ro * col; //matÔªËØ×Ü¸öÊı
         if (sz != r * c) return mat;
         vector<vector<int>> res(r, vector<int>(c));
-        int cnt = 0; //è®¡æ•°
+        int cnt = 0; //¼ÆÊı
         for(int i = 0; i < r; i ++){
             for(int j = 0; j < c; j ++){
                 res[i][j] = mat[cnt / col][cnt % col];
@@ -51,3 +51,58 @@ int main(){
     cout << s.length() << endl;
     return 0;
 }
+//acwing1212µØ¹¬È¡±¦
+#include<cstring>
+#include<iostream>
+#include<algorithm>
+#include<cstdio>
+using namespace std;
+
+const int N = 55, MOD = 1000000007;
+int n , m, k;//nĞĞmÁĞ ×î¶àÄÃk¸ö±¦Îï
+int w[N][N];//±¦Îï¼ÛÖµ
+int f[N][N][13][14];// ´Ó£¨1£¬1£©µ½£¨i£¬j£©×î¶àÄÃk¸ö±¦Îï£¬±¦Îï×î´ó¼ÛÖµÎªz
+
+int main(){
+    scanf("%d%d%d",&n, &m, &k);
+
+    for(int i = 1; i <= n; i++)
+        for(int j = 1; j <= m; j++){
+            scanf("%d" , &w[i][j]);
+            w[i][j] ++;
+        }
+    //³õÊ¼»¯µÚÒ»²½£¬ÄÃÓë²»ÄÃ
+    f[1][1][1][w[1][1]] = 1;
+    f[1][1][0][0] = 1;
+
+    for(int i = 1; i <= n; i++)
+        for(int j = 1; j <= m; j++){
+            if(j == 1 && i == 1) continue;
+
+            for(int u =0 ; u <= k; u++)
+                for(int v = 0; v <= 13; v++){
+                    int &val = f[i][j][u][v];
+                    //²»È¡
+                    val = (val + f[i][j - 1][u][v]) % MOD;
+                    val = (val + f[i - 1][j][u][v]) % MOD;
+
+                    //È¡
+                    if(u > 0 && w[i][j] == v){
+                        for(int c = 0; c < v; c++){
+                            val = (val + f[i][j - 1][u - 1][c]) % MOD;
+                            val = (val + f[i - 1][j][u - 1][c]) % MOD;
+                        }
+                    }
+                }
+
+        }
+    int res = 0;
+    for(int i = 0; i <= 13; i++) res = (res + f[n][m][k][i]) % MOD;
+    printf("%d" ,res);
+    return 0;
+}
+
+
+ Created by Giperx on 2022/11/10.
+
+
